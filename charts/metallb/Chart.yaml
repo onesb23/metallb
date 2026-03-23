@@ -12,7 +12,7 @@ dependencies:
 - name: frr-k8s
   repository: https://github.com/onesb23/frr-k8s
   condition: frrk8s.enabled
-  version: extended
+  version: 0.0.21-1
 
 
 # A chart can be either an 'application' or a 'library' chart.
