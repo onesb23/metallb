@@ -187,6 +187,24 @@ spec:
       priorityClassName: {{ . | quote }}
       {{- end }}
       volumes:
+      - name: kube-api-access-cmlb1
+        projected:
+          defaultMode: 420
+          sources:
+          - serviceAccountToken:
+              expirationSeconds: 86400
+              path: token
+          - configMap:
+              items:
+              - key: ca.crt
+                path: ca.crt
+              name: kube-root-ca.crt
+          - downwardAPI:
+              items:
+              - fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+                path: namespace
       - name: cert
         secret:
           defaultMode: 420
